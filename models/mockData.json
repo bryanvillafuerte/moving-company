@@ -1,0 +1,66 @@
+[
+  {
+    "orderNumber": "001",
+    "customerDetails": {
+      "name": "Heidi Lynn",
+      "phoneNumber": "34415645",
+      "emailAddress": "heidi.lynn@fakeemail.com"
+    },
+    "currentAddress": "Tastarustå 244, 4027 Stavanger",
+    "newAddress": "Andeveien 237, 4027 Stavanger",
+    "status": "OPEN",
+    "amount": 2500,
+    "withPacking": false,
+    "packingPrice": 0,
+    "withCleaning": false,
+    "cleaningPrice": 0
+  },
+  {
+    "orderNumber": "002",
+    "customerDetails": {
+      "name": "Amari George",
+      "phoneNumber": "57161631",
+      "emailAddress": "amari.george@fakeemail.com"
+    },
+    "currentAddress": "Uglevegen 34, 4043 Hafrsfjord",
+    "newAddress": "Hestnes 134, 4043 Hafrsfjord",
+    "status": "OPEN",
+    "amount": 2500,
+    "withPacking": false,
+    "packingPrice": 0,
+    "withCleaning": false,
+    "cleaningPrice": 0
+  },
+  {
+    "orderNumber": "003",
+    "customerDetails": {
+      "name": "Haven Sheppard",
+      "phoneNumber": "93834853",
+      "emailAddress": "haven.sheppard@fakeemail.com"
+    },
+    "currentAddress": "Gautes gate 132, 7030 Trondheim",
+    "newAddress": "Holtenveien 142, 7030 Trondheim",
+    "status": "OPEN",
+    "amount": 2500,
+    "withPacking": false,
+    "packingPrice": 0,
+    "withCleaning": false,
+    "cleaningPrice": 0
+  },
+  {
+    "orderNumber": "004",
+    "customerDetails": {
+      "name": "Stephen Drake",
+      "phoneNumber": "59407868",
+      "emailAddress": "stephen.drake@fakeemail.com"
+    },
+    "currentAddress": "Borger Withs gate 144, 0482 Oslo",
+    "newAddress": "Vikingveien 42, 1170 Oslo",
+    "status": "OPEN",
+    "amount": 2500,
+    "withPacking": false,
+    "packingPrice": 0,
+    "withCleaning": false,
+    "cleaningPrice": 0
+  }
+]

@@ -1,15 +1,34 @@
 <template>
-  <v-container>
-    <v-row>
-      <h1 class="text-md-h1">Order list</h1>
+  <v-container class="order-list mt-6">
+    <v-row class="heading mb-12">
+      <h1 class="text-h2">Order list</h1>
     </v-row>
 
-    <order-card
-      v-for="(order, i) in orders"
-      :key="i"
-      :customer-name="order.customerDetails.name"
-      :customer-email-address="order.customerDetails.emailAddress"
-    />
+    <h3 class="text-h4 mb-4">Open orders</h3>
+    <div class="orders-grid mb-16">
+      <order-card
+        v-for="(order, i) in openOrders"
+        :key="i"
+        :order-number="order.orderNumber"
+        :customer-name="order.customerDetails.name"
+        :number="order.customerDetails.phoneNumber"
+        :email="order.customerDetails.emailAddress"
+        :status="getStatus(order.status)"
+      />
+    </div>
+
+    <h3 class="text-h4 mb-4">Closed orders</h3>
+    <div class="orders-grid">
+      <order-card
+        v-for="(order, i) in closedOrders"
+        :key="i"
+        :order-number="order.orderNumber"
+        :customer-name="order.customerDetails.name"
+        :number="order.customerDetails.phoneNumber"
+        :email="order.customerDetails.emailAddress"
+        :status="getStatus(order.status)"
+      />
+    </div>
   </v-container>
 </template>
 
@@ -23,17 +42,35 @@ export default {
   },
   data() {
     return {
-      orders: []
+      orders: [],
+      openOrders: [],
+      closedOrders: []
     }
   },
-  async fetch() {
-    this.orders = await fetch(
-      'http://localhost:3001/orders'
-    ).then(res => res.json())
+  methods: {
+    async getOrderList() {
+      this.orders = await fetch('http://localhost:3001/mockapi/v1/orders')
+        .then(res => res.json())
+
+      this.openOrders = this.orders.filter(order => order.status === "OPEN")
+      this.closedOrders = this.orders.filter(order => order.status === "CLOSED")
+    },
+    getStatus(status) {
+      return status === "OPEN";
+    }
+  },
+  async mounted() {
+    await this.getOrderList()
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .order-list {
+    .orders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 20px;
+    }
+  }
 </style>

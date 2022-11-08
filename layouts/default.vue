@@ -30,12 +30,10 @@
       <v-toolbar-title>{{ title }}</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <v-container>
-        <Nuxt />
-      </v-container>
+      <Nuxt keep-alive />
     </v-main>
     <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>Bryan Villafuerte &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>

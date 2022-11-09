@@ -6,12 +6,20 @@
       "phoneNumber": "34415645",
       "emailAddress": "heidi.lynn@fakeemail.com"
     },
-    "currentAddress": "Tastarustå 244, 4027 Stavanger",
-    "newAddress": "Andeveien 237, 4027 Stavanger",
+    "currentAddress": {
+      "street": "Tastarustå 244",
+      "postCode": "4027",
+      "city": "Stavanger"
+    },
+    "newAddress": {
+      "street": "Andeveien 237",
+      "postCode": "4027",
+      "city": "Stavanger"
+    },
     "status": "OPEN",
     "amount": 2500,
-    "withPacking": false,
-    "packingPrice": 0,
+    "withPacking": true,
+    "packingPrice": 500,
     "withCleaning": false,
     "cleaningPrice": 0
   },
@@ -22,14 +30,22 @@
       "phoneNumber": "57161631",
       "emailAddress": "amari.george@fakeemail.com"
     },
-    "currentAddress": "Uglevegen 34, 4043 Hafrsfjord",
-    "newAddress": "Hestnes 134, 4043 Hafrsfjord",
+    "currentAddress": {
+      "street": "Uglevegen 34",
+      "postCode": "4043",
+      "city": "Hafrsfjord"
+    },
+    "newAddress": {
+      "street": "Hestnes 134",
+      "postCode": "4043",
+      "city": "Hafrsfjord"
+    },
     "status": "OPEN",
     "amount": 2500,
     "withPacking": false,
     "packingPrice": 0,
-    "withCleaning": false,
-    "cleaningPrice": 0
+    "withCleaning": true,
+    "cleaningPrice": 500
   },
   {
     "orderNumber": "003",
@@ -38,14 +54,22 @@
       "phoneNumber": "93834853",
       "emailAddress": "haven.sheppard@fakeemail.com"
     },
-    "currentAddress": "Gautes gate 132, 7030 Trondheim",
-    "newAddress": "Holtenveien 142, 7030 Trondheim",
+    "currentAddress": {
+      "street": "Gautes gate 132",
+      "postCode": "7030",
+      "city": "Trondheim"
+    },
+    "newAddress": {
+      "street": "Holtenveien 142",
+      "postCode": "7030",
+      "city": "Trondheim"
+    },
     "status": "OPEN",
     "amount": 2500,
-    "withPacking": false,
-    "packingPrice": 0,
-    "withCleaning": false,
-    "cleaningPrice": 0
+    "withPacking": true,
+    "packingPrice": 500,
+    "withCleaning": true,
+    "cleaningPrice": 500
   },
   {
     "orderNumber": "004",
@@ -54,12 +78,20 @@
       "phoneNumber": "59407868",
       "emailAddress": "stephen.drake@fakeemail.com"
     },
-    "currentAddress": "Borger Withs gate 144, 0482 Oslo",
-    "newAddress": "Vikingveien 42, 1170 Oslo",
-    "status": "OPEN",
+    "currentAddress": {
+      "street": "Borger Withs gate 144",
+      "postCode": "0482",
+      "city": "Oslo"
+    },
+    "newAddress": {
+      "street": "Vikingveien 42",
+      "postCode": "0482",
+      "city": "Oslo"
+    },
+    "status": "CLOSED",
     "amount": 2500,
-    "withPacking": false,
-    "packingPrice": 0,
+    "withPacking": true,
+    "packingPrice": 500,
     "withCleaning": false,
     "cleaningPrice": 0
   }

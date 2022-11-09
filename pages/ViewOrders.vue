@@ -1,5 +1,5 @@
 <template>
-  <v-container class="order-list mt-6">
+  <v-container class="order-list mt-6 px-xl-16 mx-xl-auto">
     <v-row class="heading mb-12">
       <h1 class="text-h2">Order list</h1>
     </v-row>
@@ -9,11 +9,7 @@
       <order-card
         v-for="(order, i) in openOrders"
         :key="i"
-        :order-number="order.orderNumber"
-        :customer-name="order.customerDetails.name"
-        :number="order.customerDetails.phoneNumber"
-        :email="order.customerDetails.emailAddress"
-        :status="getStatus(order.status)"
+        :order-data="order"
       />
     </div>
 
@@ -22,6 +18,7 @@
       <order-card
         v-for="(order, i) in closedOrders"
         :key="i"
+        :order-data="order"
         :order-number="order.orderNumber"
         :customer-name="order.customerDetails.name"
         :number="order.customerDetails.phoneNumber"

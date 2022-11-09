@@ -8,10 +8,14 @@
       ref="form"
       v-model="valid"
       lazy-validation
+      class="submit-form"
     >
+      <div class="mb-0 form-group-header">
+        <v-icon dense>mdi-account</v-icon>
+        <h4 class="font-weight-regular ml-1">Customer details</h4>
+      </div>
       <v-text-field
         v-model="name"
-        :counter="10"
         :rules="nameRules"
         label="Name"
         required
@@ -19,7 +23,6 @@
 
       <v-text-field
         v-model="number"
-        :counter="8"
         :rules="numberRules"
         label="Phone number"
         required
@@ -31,6 +34,69 @@
         label="E-mail"
         required
       ></v-text-field>
+
+      <v-row class="mt-4 mb-4">
+        <v-col>
+          <div class="mb-0 form-group-header">
+            <v-icon dense>mdi-home-export-outline</v-icon>
+            <h4 class="font-weight-regular ml-1">Current address</h4>
+          </div>
+          <v-text-field
+            v-model="currentAddress.street"
+            :rules="streetRules"
+            label="Street name"
+            required
+          ></v-text-field>
+          <v-row>
+            <v-col>
+              <v-text-field
+                v-model="currentAddress.postCode"
+                :rules="postCodeRules"
+                label="Post code"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-text-field
+                v-model="currentAddress.city"
+                :rules="cityRules"
+                label="City"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col>
+          <div class="mb-0 form-group-header">
+            <v-icon dense>mdi-home-import-outline</v-icon>
+            <h4 class="font-weight-regular ml-1">New address</h4>
+          </div>
+          <v-text-field
+            v-model="newAddress.street"
+            :rules="streetRules"
+            label="Street name"
+            required
+          ></v-text-field>
+          <v-row>
+            <v-col>
+              <v-text-field
+                v-model="newAddress.postCode"
+                :rules="postCodeRules"
+                label="Post code"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-text-field
+                v-model="newAddress.city"
+                :rules="cityRules"
+                label="City"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
 
       <v-checkbox
         v-model="packing"
@@ -56,7 +122,7 @@
         class="mr-4"
         @click="reset"
       >
-        Reset Form
+        Clear Form
       </v-btn>
     </v-form>
   </v-container>
@@ -70,7 +136,6 @@ export default {
     name: '',
     nameRules: [
       v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
     ],
     number: '',
     numberRules: [
@@ -81,6 +146,25 @@ export default {
     emailRules: [
       v => !!v || 'E-mail is required',
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    ],
+    currentAddress: {
+      street: '',
+      postCode: '',
+      city: ''
+    },
+    newAddress: {
+      street: '',
+      postCode: '',
+      city: ''
+    },
+    streetRules: [
+      v => !!v || 'Street name is required',
+    ],
+    postCodeRules: [
+      v => !!v || 'Post code is required',
+    ],
+    cityRules: [
+      v => !!v || 'City is required',
     ],
     select: null,
     packing: false,
@@ -103,5 +187,11 @@ export default {
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
+
+  .submit-form {
+    .form-group-header {
+      display: flex;
+    }
+  }
 }
 </style>

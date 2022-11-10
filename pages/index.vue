@@ -35,68 +35,19 @@
         required
       ></v-text-field>
 
-      <v-row class="mt-4 mb-4">
-        <v-col>
-          <div class="mb-0 form-group-header">
-            <v-icon dense>mdi-home-export-outline</v-icon>
-            <h4 class="font-weight-regular ml-1">Current address</h4>
-          </div>
-          <v-text-field
-            v-model="currentAddress.street"
-            :rules="streetRules"
-            label="Street name"
-            required
-          ></v-text-field>
-          <v-row>
-            <v-col>
-              <v-text-field
-                v-model="currentAddress.postCode"
-                :rules="postCodeRules"
-                label="Post code"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                v-model="currentAddress.city"
-                :rules="cityRules"
-                label="City"
-                required
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col>
-          <div class="mb-0 form-group-header">
-            <v-icon dense>mdi-home-import-outline</v-icon>
-            <h4 class="font-weight-regular ml-1">New address</h4>
-          </div>
-          <v-text-field
-            v-model="newAddress.street"
-            :rules="streetRules"
-            label="Street name"
-            required
-          ></v-text-field>
-          <v-row>
-            <v-col>
-              <v-text-field
-                v-model="newAddress.postCode"
-                :rules="postCodeRules"
-                label="Post code"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                v-model="newAddress.city"
-                :rules="cityRules"
-                label="City"
-                required
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
+      <v-text-field
+        v-model="currentAddress"
+        :rules="currentAddressRules"
+        label="Current Address"
+        required
+      ></v-text-field>
+
+      <v-text-field
+        v-model="newAddress"
+        :rules="newAddressRules"
+        label="New Address"
+        required
+      ></v-text-field>
 
       <v-checkbox
         v-model="packing"
@@ -147,24 +98,13 @@ export default {
       v => !!v || 'E-mail is required',
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     ],
-    currentAddress: {
-      street: '',
-      postCode: '',
-      city: ''
-    },
-    newAddress: {
-      street: '',
-      postCode: '',
-      city: ''
-    },
-    streetRules: [
-      v => !!v || 'Street name is required',
+    currentAddress: '',
+    currentAddressRules: [
+      v => !!v || 'Current address is required',
     ],
-    postCodeRules: [
-      v => !!v || 'Post code is required',
-    ],
-    cityRules: [
-      v => !!v || 'City is required',
+    newAddress: '',
+    newAddressRules: [
+      v => !!v || 'New address is required',
     ],
     select: null,
     packing: false,

@@ -19,11 +19,6 @@
         v-for="(order, i) in closedOrders"
         :key="i"
         :order-data="order"
-        :order-number="order.orderNumber"
-        :customer-name="order.customerDetails.name"
-        :number="order.customerDetails.phoneNumber"
-        :email="order.customerDetails.emailAddress"
-        :status="getStatus(order.status)"
       />
     </div>
   </v-container>
@@ -44,20 +39,12 @@ export default {
       closedOrders: []
     }
   },
-  methods: {
-    async getOrderList() {
-      this.orders = await fetch('http://localhost:3001/mockapi/v1/orders')
-        .then(res => res.json())
-
-      this.openOrders = this.orders.filter(order => order.status === "OPEN")
-      this.closedOrders = this.orders.filter(order => order.status === "CLOSED")
-    },
-    getStatus(status) {
-      return status === "OPEN";
-    }
-  },
   async mounted() {
-    await this.getOrderList()
+    this.orders = await this.$axios.$get('http://localhost:8080/api/orders')
+
+    this.openOrders = this.orders.filter(order => order.status === "OPEN")
+    this.closedOrders = this.orders.filter(order => order.status === "CLOSED")
+
   }
 }
 </script>

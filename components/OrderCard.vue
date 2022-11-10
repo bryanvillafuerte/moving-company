@@ -2,7 +2,7 @@
   <v-card class="order-card">
     <div class="text-overline pa-4" :class="orderStatus ? 'status-open' : 'status-closed'">
       <template>Order number:</template>
-      <template>{{ order.orderNumber }}</template>
+      <template>00{{ order.id }}</template>
     </div>
 
     <v-divider></v-divider>
@@ -13,7 +13,7 @@
           <template v-slot:activator>
             <v-list-item-content>
               <v-list-item-title class="text-h5 mb-1">
-                {{ order.customerDetails.name }}
+                {{ order.name }}
               </v-list-item-title>
             </v-list-item-content>
           </template>
@@ -22,25 +22,32 @@
             <v-list-item-content>
               <v-list-item-subtitle>
                 <v-icon dense>mdi-cellphone</v-icon>
-                <template>+47 {{ order.customerDetails.phoneNumber }}</template>
+                <template>+47 {{ order.phoneNumber }}</template>
               </v-list-item-subtitle>
               <v-list-item-subtitle>
                 <v-icon dense>mdi-email-outline</v-icon>
-                <template>{{ order.customerDetails.emailAddress }}</template>
+                <template>{{ order.email }}</template>
               </v-list-item-subtitle>
               <v-list-item-subtitle>
                 <v-icon dense>mdi-home-export-outline</v-icon>
-                <template>{{ order.currentAddress.street }},</template>
-                <template>{{ order.currentAddress.postCode }}</template>
-                <template>{{ order.currentAddress.city }}</template>
+                <template>{{ order.currentAddress }}</template>
               </v-list-item-subtitle>
               <v-list-item-subtitle>
                 <v-icon dense>mdi-home-import-outline</v-icon>
-                <template>{{ order.newAddress.street }},</template>
-                <template>{{ order.newAddress.postCode }}</template>
-                <template>{{ order.newAddress.city }}</template>
+                <template>{{ order.newAddress }}</template>
               </v-list-item-subtitle>
             </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-subtitle>
+              <v-list-item-avatar v-if="order.withPacking" color="cyan lighten-1" size="32" class="mx-0 mr-2">
+                <v-icon dense color="white">mdi-package-variant</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-avatar v-if="order.withCleaning" color="cyan lighten-1" size="32" class="mx-0">
+                <v-icon dense color="white">mdi-broom</v-icon>
+              </v-list-item-avatar>
+            </v-list-item-subtitle>
           </v-list-item>
         </v-list-group>
       </v-list-item-content>
@@ -57,87 +64,39 @@
           <h4 class="font-weight-regular ml-1">Customer details</h4>
         </div>
         <v-text-field
-          v-model="order.customerDetails.name"
+          v-model="order.name"
           :rules="nameRules"
           label="Name"
           required
         ></v-text-field>
 
         <v-text-field
-          v-model="order.customerDetails.phoneNumber"
+          v-model="order.phoneNumber"
           :rules="numberRules"
           label="Phone number"
           required
         ></v-text-field>
 
         <v-text-field
-          v-model="order.customerDetails.emailAddress"
+          v-model="order.email"
           :rules="emailRules"
           label="E-mail"
           required
         ></v-text-field>
 
-        <div class="mt-4 mb-4">
-          <div class="mb-0 form-group-header">
-            <v-icon dense>mdi-home-export-outline</v-icon>
-            <h4 class="font-weight-regular ml-1">Current address</h4>
-          </div>
-          <v-text-field
-            v-model="order.currentAddress.street"
-            :rules="streetRules"
-            label="Street name"
-            required
-          ></v-text-field>
-          <v-row>
-            <v-col>
-              <v-text-field
-                v-model="order.currentAddress.postCode"
-                :rules="postCodeRules"
-                label="Post code"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                v-model="order.currentAddress.city"
-                :rules="cityRules"
-                label="City"
-                required
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </div>
+        <v-text-field
+          v-model="order.currentAddress"
+          :rules="currentAddressRules"
+          label="Current Address"
+          required
+        ></v-text-field>
 
-        <div class="mt-4 mb-4">
-          <div class="mb-0 form-group-header">
-            <v-icon dense>mdi-home-import-outline</v-icon>
-            <h4 class="font-weight-regular ml-1">New address</h4>
-          </div>
-          <v-text-field
-            v-model="order.newAddress.street"
-            :rules="streetRules"
-            label="Street name"
-            required
-          ></v-text-field>
-          <v-row>
-            <v-col>
-              <v-text-field
-                v-model="order.newAddress.postCode"
-                :rules="postCodeRules"
-                label="Post code"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                v-model="order.newAddress.city"
-                :rules="cityRules"
-                label="City"
-                required
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </div>
+        <v-text-field
+          v-model="order.newAddress"
+          :rules="newAddressRules"
+          label="New Address"
+          required
+        ></v-text-field>
 
         <v-checkbox
           v-model="order.withPacking"
@@ -221,14 +180,11 @@ export default {
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
-      streetRules: [
-        v => !!v || 'Street name is required',
+      currentAddressRules: [
+        v => !!v || 'Current address is required',
       ],
-      postCodeRules: [
-        v => !!v || 'Post code is required',
-      ],
-      cityRules: [
-        v => !!v || 'City is required',
+      newAddressRules: [
+        v => !!v || 'New address is required',
       ],
       select: null,
       snackbar: false,
@@ -272,6 +228,8 @@ export default {
   }
 
   .edit-form {
+    width: 100%;
+
     .form-group-header {
       display: flex;
     }
